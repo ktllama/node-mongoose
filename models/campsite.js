@@ -4,6 +4,26 @@ const Schema = mongoose.Schema;
 //creating schema
 //creates a new object called campsiteSchema
 //this is a constructor function (like classes without syntactic sugar)
+
+const commentSchema = new Schema({
+    rating: {
+        type: Number,
+        min: 1,
+        max: 5,
+        required: true
+    },
+    text: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: String,
+        required: true
+    }
+}, {
+    timestamps: true
+});
+
 const campsiteSchema = new Schema({
     name: {
         type: String,
@@ -13,10 +33,10 @@ const campsiteSchema = new Schema({
     description: {
         type: String,
         required: true
-    }
+    },
+    comments: [commentSchema]
 }, {
     timestamps: true
-    //will get a timestap when created and updated
 });
 
 //create model
